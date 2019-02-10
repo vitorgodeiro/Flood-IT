@@ -1,10 +1,10 @@
 #include <iostream>
-#include <time.h>
 #include <cstdlib>
-#include "../include/board.hpp"
+#include "../include/game.hpp"
 
 int main (int argc, char *argv[]){
-	Board *b = new Board(atoi(argv[1]));
-	b->print();
+
+	Game *g = new Game(atoi(argv[1]));
+	g->play();
 	return 0;
 }
