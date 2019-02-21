@@ -5,21 +5,33 @@ Game::Game(int size, int steps){
 	this->populateBoard();
 	this->equalNumbersElementsBoard();
     this->steps = steps;
+    graphic = new Graphic(size*25 + 15,size*25 + 15 , "Flood-It Game");
 }
 
 void Game::play(){
     unsigned int command, plays = 0;
-    boardGame->print();
-    while (plays++ < this->steps){
-        repeatCommand:
-        std::cin >> command;
-        if (command < 0 || command > 6) {
-            std::cout << "Invalid command.\n";
-            goto repeatCommand;
-        }
-        floods(0,0, command, boardGame, new Board(boardGame->getSize()));
-        std::cout << "************************" << std::endl;
-        boardGame->print();
+    //boardGame->print();
+    graphic->render(boardGame);
+
+    while (graphic->isOpen()){
+        
+        
+        //if (plays++ > this->steps){
+          //  break;
+        //}
+
+        //repeatCommand:
+        //std::cin >> command;
+
+        //if (command < 0 || command > 6) {
+          //  std::cout << "Invalid command.\n";
+            //goto repeatCommand;
+        //}
+
+        //floods(0,0, command, boardGame, new Board(boardGame->getSize()));
+       // std::cout << "************************" << std::endl;
+        //boardGame->print();
+        graphic->render(boardGame);
 
         if (boardGame->isSolved()){
             std::cout << " Jogo SOLUCIONADO" << std::endl;
