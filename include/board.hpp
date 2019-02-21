@@ -21,6 +21,7 @@ class Board {
 		int get (int i, int j);
 		int getSize () { return size;};
 		void set (int i, int j, int v);
+		void zeros();
 
 		/**
         * Verify if game board  is solved

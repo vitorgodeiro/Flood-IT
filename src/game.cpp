@@ -5,47 +5,40 @@ Game::Game(int size, int steps){
 	this->populateBoard();
 	this->equalNumbersElementsBoard();
     this->steps = steps;
-    graphic = new Graphic(size*25 + 15,size*25 + 15 , "Flood-It Game");
+    graphic = new Graphic(size*25 + 115,size*25 + 15 , "Flood-It Game");
 }
 
 void Game::play(){
     unsigned int command, plays = 0;
-    //boardGame->print();
-    graphic->render(boardGame);
+    Board *boardAux = new Board(boardGame->getSize());
+    
+    while (graphic->isOpen()){                
+        if (plays >= this->steps) { break; }
 
-    while (graphic->isOpen()){
-        
-        
-        //if (plays++ > this->steps){
-          //  break;
-        //}
+        command = graphic->captureEvents();
 
-        //repeatCommand:
-        //std::cin >> command;
+        if (command >= 0 and command < 6) {
+            boardAux->zeros();
+            floods(0,0, command, boardGame, boardAux);
+            plays++;    
+        }
 
-        //if (command < 0 || command > 6) {
-          //  std::cout << "Invalid command.\n";
-            //goto repeatCommand;
-        //}
-
-        //floods(0,0, command, boardGame, new Board(boardGame->getSize()));
-       // std::cout << "************************" << std::endl;
-        //boardGame->print();
-        graphic->render(boardGame);
+        graphic->render(boardGame, this->steps, plays);
 
         if (boardGame->isSolved()){
             std::cout << " Jogo SOLUCIONADO" << std::endl;
-            break;
+            while(true and graphic->isOpen()){graphic->captureEvents();};
         }
     }
 }
 
 void Game::floods(int a, int b, int command, Board *board, Board *boardAux){
-	boardAux->set(a, b, 1);
+	
+    boardAux->set(a, b, 1);
 
-    if (a + 1 < board->getSize() && board->get(a, b) == board->get(a+1, b) && boardAux->get(a+1, b) == 0 ) { floods (a+1, b, command, board, boardAux);}
+    if (b + 1 < board->getSize() && board->get(a, b) == board->get(a, b+1) && boardAux->get(a, b+1) == 0) { floods (a, b+1, command, board, boardAux);}
 
-    if (b + 1 < board->getSize() && board->get(a, b) == board->get(a, b+1) && boardAux->get(a, b+1) == 0 ) { floods (a, b+1, command, board, boardAux);}
+    if (a + 1 < board->getSize() && board->get(a, b) == board->get(a+1, b) && boardAux->get(a+1, b) == 0) { floods (a+1, b, command, board, boardAux);}
 
     if (0 < a && board->get(a, b) == board->get(a-1, b) && boardAux->get(a-1, b) == 0) {floods (a-1, b, command, board, boardAux);}
 

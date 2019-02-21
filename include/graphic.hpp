@@ -15,8 +15,17 @@ class Graphic {
         sf::RenderWindow *window;
 	public:
 		Graphic(int width, int height, std::string name);
-        void render (Board *boardGame);
+        
+        /**
+        * Render the game
+        *
+        * @param boardGame : The game board for render
+        * @param steps : The total steps for play
+        * @param currentStep : Is the current step of game
+        **/
+        void render (Board *boardGame, int steps, int currentStep);
         bool isOpen();
+        int captureEvents();
 	
 };
 

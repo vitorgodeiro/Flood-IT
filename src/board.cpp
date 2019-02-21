@@ -13,6 +13,12 @@ void Board::print(){
 	std::cout << std::endl;
 }
 
+void Board::zeros(){
+	for (int i = 0; i < size*size; i++){
+		e[i] = 0;
+	}
+}
+
 int Board::get (int i, int j){
 	return e[i*size+j];	
 }
