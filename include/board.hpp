@@ -29,9 +29,7 @@ class Board {
         * @return False: If not solved (Has at least one different
         * 				 element in the game board)
         **/
-        bool isSolved();
-
-		
+        bool isSolved();		
 };
 
 #endif

@@ -11,27 +11,28 @@
 // The actual class
 
 class Game {
-	private:
-		Board *boardGame;
+        private:
+	       Board *boardGame;
+               int steps;
 
-		/**
-        * Initialize the board
-        */
+        	/**
+                * Initialize the board
+                */
 		void populateBoard();
 
-        /**
-        * Makes the game board have almost the
-        * same amount of different colors.
-        */
-        void equalNumbersElementsBoard();
+                /**
+                * Makes the game board have almost the
+                * same amount of different colors.
+                */
+                void equalNumbersElementsBoard();
 
-        /**
-        * Flood the game board
-        **/
-        void floods(int a, int b, int command, Board *board, Board *boardAux);
+                /**
+                * Flood the game board
+                **/
+                void floods(int a, int b, int command, Board *board, Board *boardAux);
 
 	public:
-		Game(int size);
+		Game(int size, int steps);
 		void play();	
 };
 

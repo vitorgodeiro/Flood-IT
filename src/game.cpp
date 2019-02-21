@@ -1,19 +1,23 @@
 #include "../include/game.hpp"
 
-Game::Game(int size){
+Game::Game(int size, int steps){
 	this->boardGame = new Board(size);
 	this->populateBoard();
 	this->equalNumbersElementsBoard();
+    this->steps = steps;
 }
 
 void Game::play(){
     unsigned int command, plays = 0;
     boardGame->print();
-    Board *boarAux;
-    while (plays++ < 20){
+    while (plays++ < this->steps){
+        repeatCommand:
         std::cin >> command;
-        boarAux = new Board(boardGame->getSize());
-        floods(0,0, command, boardGame, boarAux);
+        if (command < 0 || command > 6) {
+            std::cout << "Invalid command.\n";
+            goto repeatCommand;
+        }
+        floods(0,0, command, boardGame, new Board(boardGame->getSize()));
         std::cout << "************************" << std::endl;
         boardGame->print();
 
