@@ -16,14 +16,14 @@ What things you need to install the software
 g++
 SFML
 ```
-## Running 
 
-To build the code use the project makefile.
+## Compiling
 
 ```
 make
 ```
-After create the executable, run the following command to execute the program.
+
+## Running 
 
 ```
 ./exe size_board number_steps
