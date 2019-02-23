@@ -17,7 +17,7 @@ g++
 SFML
 ```
 
-## Compiling
+## Compile
 
 ```
 make
